@@ -24,8 +24,7 @@ class SkillsStrip extends GetView<HomeController> {
                 mainAxisSize: MainAxisSize.min,
                 spacing: 8,
                 children: [
-                  const Icon(Icons.star_rounded,
-                      size: 22, color: AppTheme.star),
+                  const Icon(Icons.star_rounded, size: 22, color: AppTheme.star),
                   Text(
                     s,
                     style: const TextStyle(

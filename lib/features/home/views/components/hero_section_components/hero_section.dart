@@ -17,8 +17,7 @@ class HeroSection extends GetView<HomeController> {
           child: ConstrainedBox(
             constraints: BoxConstraints(maxWidth: _maxWidth),
             child: Padding(
-              padding: EdgeInsets.symmetric(
-                  horizontal: isMobile ? 20 : 32, vertical: isMobile ? 24 : 48),
+              padding: EdgeInsets.symmetric(horizontal: isMobile ? 20 : 32, vertical: isMobile ? 24 : 48),
               child: SizedBox(
                 height: isMobile ? 480 : 520,
                 child: Row(
@@ -33,10 +32,7 @@ class HeroSection extends GetView<HomeController> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           spacing: isMobile ? 12 : 16,
                           children: [
-                            Text('Welcome To',
-                                style: TextStyle(
-                                    fontSize: isMobile ? 18 : 20,
-                                    color: Colors.grey[700])),
+                            Text('Welcome To', style: TextStyle(fontSize: isMobile ? 18 : 20, color: Colors.grey[700])),
                             Text(
                               'My Portofolio',
                               style: TextStyle(
@@ -47,9 +43,7 @@ class HeroSection extends GetView<HomeController> {
                             ),
                             Text(
                               controller.role.value,
-                              style: TextStyle(
-                                  fontSize: isMobile ? 16 : 18,
-                                  color: Colors.grey[600]),
+                              style: TextStyle(fontSize: isMobile ? 16 : 18, color: Colors.grey[600]),
                             ),
                             const SizedBox(height: 16),
                             Row(
@@ -57,27 +51,35 @@ class HeroSection extends GetView<HomeController> {
                               children: [
                                 Text(
                                   'Created By:',
-                                  style: TextStyle(
-                                      fontSize: isMobile ? 14 : 16,
-                                      color: Colors.grey[800]),
+                                  style: TextStyle(fontSize: isMobile ? 14 : 16, color: Colors.grey[800]),
                                 ),
                                 const SizedBox(width: 10),
-                                Container(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 14, vertical: 10),
-                                  decoration: BoxDecoration(
-                                    color: AppTheme.primary
-                                        .withValues(alpha: 0.25),
-                                    borderRadius: BorderRadius.circular(24),
+                                if (!isMobile)
+                                  Container(
+                                    padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+                                    decoration: BoxDecoration(
+                                      color: AppTheme.primary.withValues(alpha: 0.25),
+                                      borderRadius: BorderRadius.circular(24),
+                                    ),
+                                    child: Obx(() => Text(
+                                          controller.name.value,
+                                          style: const TextStyle(fontWeight: FontWeight.w600),
+                                        )),
                                   ),
-                                  child: Obx(() => Text(
-                                        controller.name.value,
-                                        style: const TextStyle(
-                                            fontWeight: FontWeight.w600),
-                                      )),
-                                ),
                               ],
                             ),
+                            if (isMobile)
+                              Container(
+                                padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+                                decoration: BoxDecoration(
+                                  color: AppTheme.primary.withValues(alpha: 0.25),
+                                  borderRadius: BorderRadius.circular(24),
+                                ),
+                                child: Obx(() => Text(
+                                      controller.name.value,
+                                      style: const TextStyle(fontWeight: FontWeight.w600),
+                                    )),
+                              ),
                           ],
                         );
                       }),
