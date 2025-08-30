@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:my_portofolio/constants/profile_constans.dart';
+import 'package:my_portofolio/features/home/models/certificate_model.dart';
 import 'package:my_portofolio/features/home/models/education_model.dart';
 import 'package:my_portofolio/features/home/models/experience_model.dart';
 
@@ -93,6 +94,45 @@ class HomeController extends GetxController {
         'Completed more than 7 courses including Flutter framework courses starting from beginner, basic, to expert stages. ',
         'Developed 1 mobile application for final capstone project.',
       ],
+    ),
+  ].obs;
+
+  final certificates = <CertificateModel>[
+    const CertificateModel(
+      title: 'Menjadi Flutter Developer Expert',
+      issuer: 'Dicoding Indonesia',
+      imageAsset: 'assets/certificates/dicoding_flutter_expert.jpg',
+      linkUrl: 'https://www.dicoding.com/certificates/JLX1L475NX72',
+    ),
+    const CertificateModel(
+      title: 'Belajar Fundamental Aplikasi Flutter',
+      issuer: 'Dicoding Indonesia',
+      imageAsset: 'assets/certificates/dicoding_flutter_fundamental.jpg',
+      linkUrl: 'https://www.dicoding.com/certificates/XXXXX',
+    ),
+    const CertificateModel(
+      title: 'Belajar Membuat Aplikasi Flutter untuk Pemula',
+      issuer: 'Dicoding Indonesia',
+      imageAsset: 'assets/certificates/dicoding_flutter_pemula.jpg',
+      linkUrl: 'https://www.dicoding.com/certificates/XXXXX',
+    ),
+    const CertificateModel(
+      title: 'Belajar Membuat Aplikasi Back-End untuk Pemula',
+      issuer: 'Dicoding Indonesia',
+      imageAsset: 'assets/certificates/dicoding_backend.jpg',
+      linkUrl: 'https://www.dicoding.com/certificates/XXXXX',
+    ),
+    const CertificateModel(
+      title: 'Belajar Dasar UX Design',
+      issuer: 'Dicoding Indonesia',
+      imageAsset: 'assets/certificates/dicoding_ux_design.jpg',
+      linkUrl: 'https://www.dicoding.com/certificates/XXXXX',
+    ),
+    const CertificateModel(
+      title: 'Belajar Prinsip Pemrograman SOLID',
+      issuer: 'Dicoding Indonesia',
+      imageAsset: 'assets/certificates/dicoding_solid_principles.jpg',
+      linkUrl: 'https://www.dicoding.com/certificates/XXXXX',
     ),
   ].obs;
 }
