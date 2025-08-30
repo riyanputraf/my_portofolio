@@ -31,7 +31,7 @@ class HomeController extends GetxController {
       start: DateTime(2025, 2, 1),
       end: null,
       durationOverride: '7 month',
-      logoAsset: 'assets/images/logos/get.png',
+      logoAsset: 'assets/images/get.png',
       bullets: [
         'Developed POS application for user needs.',
         'Developed more than 5 feature application.',
@@ -45,7 +45,7 @@ class HomeController extends GetxController {
       start: DateTime(2024, 10, 1),
       end: DateTime(2025, 1, 31),
       durationOverride: '4 month',
-      logoAsset: 'assets/images/logos/venturo.png',
+      logoAsset: 'assets/images/venturo.png',
       bullets: [
         'Developed more than 2 project mobile application.',
         'Developed more than 10 additional features into a mobile application.',
@@ -59,10 +59,39 @@ class HomeController extends GetxController {
       start: DateTime(2021, 7, 1),
       end: DateTime(2024, 7, 1),
       durationOverride: '3 year',
-      logoAsset: 'assets/images/logos/umm.png',
+      logoAsset: 'assets/images/lab_informatika.png',
       bullets: [
         'Developed and released 1 android application for 2 different roles (assistant and student).',
         'Developed 2 additional features into a mobile app using flutter.',
+        'Fixed 2 bugs in the attendance and student search features.',
+      ],
+    ),
+    ExperienceModel(
+      role: 'Mobile Developer Intern',
+      company: 'PT. Jatinom Indah Agrig',
+      periodText: 'Nov 2022 - Jan 2023',
+      start: DateTime(2022, 11, 1),
+      end: DateTime(2023, 1, 1),
+      durationOverride: '3 month',
+      logoAsset: 'assets/images/jatinom.png',
+      bullets: [
+        'Developed mobile applications using 3 different technologies (Flutter, GetX, Laravel)',
+        'Developed 1 mobile application that integrate with 1 Internet of Things server. ',
+        'Develop mobile application view to display more than 3 data in the application.',
+      ],
+    ),
+    ExperienceModel(
+      role: 'Multi-Platform and Back-End Developer Cohort',
+      company: 'Dicoding Indonesia',
+      periodText: 'Aug 2022 - Jan 2023 ',
+      start: DateTime(2022, 8, 1),
+      end: DateTime(2023, 1, 1),
+      durationOverride: '6 month',
+      logoAsset: 'assets/images/dicoding.png',
+      bullets: [
+        'Create more than 3 mini project using the Flutter framework.  ',
+        'Completed more than 7 courses including Flutter framework courses starting from beginner, basic, to expert stages. ',
+        'Developed 1 mobile application for final capstone project.',
       ],
     ),
   ].obs;
