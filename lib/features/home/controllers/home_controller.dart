@@ -3,6 +3,7 @@ import 'package:my_portofolio/constants/profile_constans.dart';
 import 'package:my_portofolio/features/home/models/certificate_model.dart';
 import 'package:my_portofolio/features/home/models/education_model.dart';
 import 'package:my_portofolio/features/home/models/experience_model.dart';
+import 'package:my_portofolio/features/home/models/sevice_skil_model.dart';
 
 class HomeController extends GetxController {
   static HomeController get to => Get.find();
@@ -134,5 +135,15 @@ class HomeController extends GetxController {
       imageAsset: 'assets/certificates/dicoding_solid_principles.jpg',
       linkUrl: 'https://www.dicoding.com/certificates/XXXXX',
     ),
+  ].obs;
+
+  final serviceSkills = <ServiceSkillModel>[
+    const ServiceSkillModel(title: 'Flutter', asset: 'assets/skills/flutter.png'),
+    const ServiceSkillModel(title: 'Mobile Development', asset: 'assets/skills/android.png'),
+    const ServiceSkillModel(title: 'Laravel', asset: 'assets/skills/laravel.png'),
+    const ServiceSkillModel(title: 'PHP', asset: 'assets/skills/php.png'),
+    const ServiceSkillModel(title: 'API', asset: 'assets/skills/api.png'),
+    const ServiceSkillModel(title: 'MySQL', asset: 'assets/skills/mysql.png'),
+    const ServiceSkillModel(title: 'GIT', asset: 'assets/skills/git.png'),
   ].obs;
 }
