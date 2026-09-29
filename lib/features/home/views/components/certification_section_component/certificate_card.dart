@@ -1,106 +1,84 @@
 import 'package:flutter/material.dart';
+import 'package:my_portofolio/configs/themes/app_theme.dart';
 import 'package:my_portofolio/features/home/models/certificate_model.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:my_portofolio/features/home/views/components/contact_section.dart';
 
-class CertificateCard extends StatefulWidget {
-  const CertificateCard({super.key, required this.data});
+class CertificateCard extends StatelessWidget {
+  const CertificateCard({super.key, required this.data, this.titleHeight});
+  final double? titleHeight;
+  static const titleStyle =
+      TextStyle(fontWeight: FontWeight.w700, fontSize: 16, height: 1.4);
   final CertificateModel data;
-
+  void _preview(BuildContext context) => showDialog<void>(
+      context: context,
+      builder: (context) => Dialog(
+              child: ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 960),
+            child: SingleChildScrollView(
+                child: Column(mainAxisSize: MainAxisSize.min, children: [
+              Row(children: [
+                Expanded(
+                    child: Padding(
+                        padding: const EdgeInsets.all(16),
+                        child: Text(data.title,
+                            style:
+                                const TextStyle(fontWeight: FontWeight.w700)))),
+                IconButton(
+                    tooltip: 'Close certificate',
+                    onPressed: () => Navigator.pop(context),
+                    icon: const Icon(Icons.close))
+              ]),
+              Image.asset(data.imageAsset,
+                  fit: BoxFit.contain, semanticLabel: data.title),
+              if (data.linkUrl.isNotEmpty)
+                Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: TextButton.icon(
+                        onPressed: () =>
+                            openPortfolioLink(context, Uri.parse(data.linkUrl)),
+                        icon: const Icon(Icons.verified_outlined),
+                        label: const Text('Verify on Dicoding'))),
+            ])),
+          )));
   @override
-  State<CertificateCard> createState() => _CertificateCardState();
-}
-
-class _CertificateCardState extends State<CertificateCard> {
-  bool _hover = false;
-
-  @override
-  Widget build(BuildContext context) {
-    const titleStyle = TextStyle(
-      fontWeight: FontWeight.w800,
-      fontSize: 16.5,
-      height: 1.25, // line-height
-    );
-
-    // tinggi untuk 2 baris title
-    final titleLineH = (titleStyle.fontSize ?? 16.5) * (titleStyle.height ?? 1.2);
-    final titleBoxH = titleLineH * 2; // 2 lines
-
-    return MouseRegion(
-      onEnter: (_) => setState(() => _hover = true),
-      onExit: (_) => setState(() => _hover = false),
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 160),
-        transform: _hover ? Matrix4.translationValues(0, -3, 0) : Matrix4.identity(),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(22),
-          boxShadow: const [BoxShadow(blurRadius: 22, color: Color(0x14000000))],
-        ),
+  Widget build(BuildContext context) => Material(
+        color: Colors.white,
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(18),
+            side: const BorderSide(color: AppTheme.line)),
         clipBehavior: Clip.antiAlias,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            AspectRatio(
-              aspectRatio: 20 / 10,
-              child: Image.asset(widget.data.imageAsset, fit: BoxFit.cover),
-            ),
-
-            // Expanded supaya bisa pakai Spacer() untuk dorong link ke bawah (opsional)
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(16, 12, 16, 16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    // ⬇️ Kotak fixed height untuk title (maks 2 baris)
-                    SizedBox(
-                      height: titleBoxH,
-                      child: Align(
-                        alignment: Alignment.topLeft,
-                        child: Text(
-                          widget.data.title,
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                          style: titleStyle,
+        child: InkWell(
+            onTap: () => _preview(context),
+            child:
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              AspectRatio(
+                  aspectRatio: 1.65,
+                  child: Padding(
+                      padding: const EdgeInsets.all(12),
+                      child: Image.asset(data.imageAsset,
+                          cacheWidth: 640,
+                          fit: BoxFit.contain,
+                          semanticLabel: data.title))),
+              Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(
+                          height: titleHeight,
+                          child: Text(data.title, style: titleStyle),
                         ),
-                      ),
-                    ),
-
-                    // ⬇️ Issuer sekarang pasti sejajar antar kartu
-                    Text(
-                      widget.data.issuer,
-                      style: TextStyle(color: Colors.blueGrey[600], fontSize: 13.5),
-                    ),
-
-                    const SizedBox(height: 6),
-
-                    // Opsional: biar link rata bawah semua kartu
-                    const Spacer(),
-
-                    InkWell(
-                      onTap: () => _open(widget.data.linkUrl),
-                      child: const Text(
-                        'Certificate Link →',
-                        style: TextStyle(
-                          decoration: TextDecoration.underline,
-                          decorationThickness: 1.2,
-                          color: Color(0xFF6C63FF),
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Future<void> _open(String url) async {
-    final uri = Uri.parse(url);
-    await launchUrl(uri, webOnlyWindowName: '_blank');
-  }
+                        const SizedBox(height: 8),
+                        Text(data.issuer,
+                            style: const TextStyle(
+                                color: AppTheme.muted, fontSize: 12)),
+                        const SizedBox(height: 18),
+                        const Text('View certificate',
+                            style: TextStyle(
+                                fontWeight: FontWeight.w600,
+                                color: AppTheme.primary,
+                                fontSize: 13)),
+                      ])),
+            ])),
+      );
 }

@@ -14,11 +14,16 @@ class EducationCard extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       spacing: 6,
       children: [
-        Text(data.period, style: TextStyle(fontSize: isMobile ? 14 : 15.5, color: Colors.black87)),
-        Text(data.institution, style: TextStyle(fontSize: isMobile ? 18 : 20, fontWeight: FontWeight.w800)),
+        Text(data.period,
+            style: TextStyle(
+                fontSize: isMobile ? 14 : 15.5, color: Colors.black87)),
+        Text(data.institution,
+            style: TextStyle(
+                fontSize: isMobile ? 18 : 20, fontWeight: FontWeight.w800)),
         Text(
           data.degree,
-          style: TextStyle(fontSize: isMobile ? 13 : 14.5, color: Colors.blueGrey[600]),
+          style: TextStyle(
+              fontSize: isMobile ? 13 : 14.5, color: Colors.blueGrey[600]),
         ),
       ],
     );
@@ -33,8 +38,8 @@ class EducationCard extends StatelessWidget {
       padding: EdgeInsets.all(isMobile ? 16 : 22),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(22),
-        boxShadow: const [BoxShadow(blurRadius: 24, color: Color(0x14000000))],
+        borderRadius: BorderRadius.circular(18),
+        border: Border.all(color: AppTheme.line),
       ),
       child: isMobile
           ? Column(
@@ -52,7 +57,8 @@ class EducationCard extends StatelessWidget {
                 Expanded(flex: 5, child: left),
                 SizedBox(
                   height: 96,
-                  child: VerticalDivider(width: 28, thickness: 1.2, color: Colors.grey.shade300),
+                  child: VerticalDivider(
+                      width: 28, thickness: 1.2, color: Colors.grey.shade300),
                 ),
                 Expanded(flex: 5, child: right),
               ],

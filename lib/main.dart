@@ -17,6 +17,7 @@ class PortofolioApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'Riyan - Flutter Developer',
+      debugShowCheckedModeBanner: false,
       theme: AppTheme.light,
       initialRoute: Routes.home,
       getPages: AppPages.pages,

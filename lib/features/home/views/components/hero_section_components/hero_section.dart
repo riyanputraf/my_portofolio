@@ -1,140 +1,120 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:my_portofolio/configs/themes/app_theme.dart';
-import 'package:my_portofolio/features/home/controllers/home_controller.dart';
+import 'package:my_portofolio/features/home/views/components/portfolio_primitives.dart';
 
-class HeroSection extends GetView<HomeController> {
-  const HeroSection({super.key});
-
-  final _maxWidth = 1200.0;
-
+class HeroSection extends StatelessWidget {
+  const HeroSection(
+      {super.key, required this.onProjects, required this.onContact});
+  final VoidCallback onProjects;
+  final VoidCallback onContact;
   @override
-  Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (_, constraints) {
-        final isMobile = constraints.maxWidth < 800;
-        return Center(
-          child: ConstrainedBox(
-            constraints: BoxConstraints(maxWidth: _maxWidth),
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: isMobile ? 20 : 32, vertical: isMobile ? 24 : 48),
-              child: SizedBox(
-                height: isMobile ? 480 : 520,
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    // LEFT — text
-                    Expanded(
-                      flex: 6,
-                      child: Obx(() {
-                        return Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          spacing: isMobile ? 12 : 16,
-                          children: [
-                            Text('Welcome To', style: TextStyle(fontSize: isMobile ? 18 : 20, color: Colors.grey[700])),
-                            Text(
-                              'My Portofolio',
-                              style: TextStyle(
-                                fontSize: isMobile ? 40 : 56,
-                                fontWeight: FontWeight.w800,
-                                height: 1.1,
-                              ),
-                            ),
-                            Text(
-                              controller.role.value,
-                              style: TextStyle(fontSize: isMobile ? 16 : 18, color: Colors.grey[600]),
-                            ),
-                            const SizedBox(height: 16),
-                            Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Text(
-                                  'Created By:',
-                                  style: TextStyle(fontSize: isMobile ? 14 : 16, color: Colors.grey[800]),
-                                ),
-                                const SizedBox(width: 10),
-                                if (!isMobile)
-                                  Container(
-                                    padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
-                                    decoration: BoxDecoration(
-                                      color: AppTheme.primary.withValues(alpha: 0.25),
-                                      borderRadius: BorderRadius.circular(24),
-                                    ),
-                                    child: Obx(() => Text(
-                                          controller.name.value,
-                                          style: const TextStyle(fontWeight: FontWeight.w600),
-                                        )),
-                                  ),
-                              ],
-                            ),
-                            if (isMobile)
-                              Container(
-                                padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
-                                decoration: BoxDecoration(
-                                  color: AppTheme.primary.withValues(alpha: 0.25),
-                                  borderRadius: BorderRadius.circular(24),
-                                ),
-                                child: Obx(() => Text(
-                                      controller.name.value,
-                                      style: const TextStyle(fontWeight: FontWeight.w600),
-                                    )),
-                              ),
-                          ],
-                        );
-                      }),
-                    ),
-
-                    const SizedBox(width: 20),
-
-                    // RIGHT — foto dalam kapsul biru
-                    Expanded(
-                      flex: 5,
-                      child: _PhotoCapsule(isMobile: isMobile),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-        );
-      },
-    );
-  }
-}
-
-class _PhotoCapsule extends StatelessWidget {
-  const _PhotoCapsule({required this.isMobile});
-  final bool isMobile;
-
-  @override
-  Widget build(BuildContext context) {
-    return LayoutBuilder(builder: (context, box) {
-      final double h = box.maxHeight;
-      return Stack(
-        children: [
-          Align(
-            alignment: Alignment.centerRight,
-            child: Container(
-              height: h * (isMobile ? 0.95 : 1.0),
-              width: double.infinity,
-              alignment: Alignment.centerRight,
-              padding: EdgeInsets.only(right: isMobile ? 8 : 24),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(300),
-                child: Align(
-                  alignment: Alignment.center,
-                  child: Image.asset(
-                    'assets/images/foto1.jpg',
-                    height: h * 0.95,
-                    fit: BoxFit.contain,
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ],
+  Widget build(BuildContext context) => SectionShell(
+        child: LayoutBuilder(builder: (context, box) {
+          final mobile = box.maxWidth < 740;
+          final copy =
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            const Tag('FLUTTER DEVELOPER · INDONESIA'),
+            const SizedBox(height: 26),
+            Text('Thoughtful apps.\nMeaningful\nexperiences.',
+                style: TextStyle(
+                    fontSize: mobile ? 46 : 66,
+                    height: 1.04,
+                    letterSpacing: -2.8,
+                    fontWeight: FontWeight.w700)),
+            const SizedBox(height: 26),
+            const Text("Hi, I’m Riyan Putra Firjatullah.",
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600)),
+            const SizedBox(height: 8),
+            ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: 430),
+                child: const Text(
+                    'I turn everyday challenges into intuitive mobile applications, with Flutter and a little attention to detail.',
+                    style: TextStyle(
+                        fontSize: 16, height: 1.7, color: AppTheme.muted))),
+            const SizedBox(height: 28),
+            Wrap(spacing: 12, runSpacing: 12, children: [
+              FilledButton.icon(
+                  onPressed: onProjects,
+                  label: const Text('Explore my work'),
+                  icon: const Icon(Icons.arrow_outward_rounded, size: 18),
+                  iconAlignment: IconAlignment.end),
+              OutlinedButton(
+                  onPressed: onContact, child: const Text('Let’s talk')),
+            ]),
+            const SizedBox(height: 34),
+            const Row(children: [
+              Icon(Icons.code_rounded, size: 18, color: AppTheme.primary),
+              SizedBox(width: 10),
+              Expanded(
+                  child: Text('Built with care. Powered by Flutter.',
+                      style: TextStyle(fontSize: 12, color: AppTheme.muted)))
+            ]),
+          ]);
+          final portrait = SizedBox(
+              height: mobile ? 410 : 520,
+              child: Stack(children: [
+                Positioned.fill(
+                    left: 24,
+                    right: 12,
+                    top: 20,
+                    bottom: 20,
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: const Color(0xFFE9E3F4),
+                          borderRadius: BorderRadius.circular(180)),
+                      child: ClipRRect(
+                          borderRadius: BorderRadius.circular(180),
+                          child: Image.asset('assets/images/foto1.jpg',
+                              fit: BoxFit.cover,
+                              alignment: const Alignment(0, -.6),
+                              semanticLabel:
+                                  'Portrait of Riyan Putra Firjatullah')),
+                    )),
+                Positioned(
+                    top: 0,
+                    right: 0,
+                    child: Container(
+                        padding: const EdgeInsets.all(18),
+                        decoration: const BoxDecoration(
+                            color: AppTheme.star, shape: BoxShape.circle),
+                        child: const Icon(Icons.auto_awesome,
+                            size: 32, color: AppTheme.primary))),
+                Positioned(
+                    bottom: 28,
+                    left: 0,
+                    child: Container(
+                        padding: const EdgeInsets.all(18),
+                        decoration: BoxDecoration(
+                            color: AppTheme.blackBar,
+                            borderRadius: BorderRadius.circular(16)),
+                        child: const Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              FlutterLogo(size: 30),
+                              SizedBox(width: 14),
+                              Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text('From idea to app',
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.w700)),
+                                    Text('Mobile · API · User experience',
+                                        style: TextStyle(
+                                            color: Color(0xFFCAC5DB),
+                                            fontSize: 11))
+                                  ])
+                            ]))),
+              ]));
+          return mobile
+              ? Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [copy, const SizedBox(height: 36), portrait])
+              : Row(children: [
+                  Expanded(flex: 6, child: copy),
+                  const SizedBox(width: 48),
+                  Expanded(flex: 5, child: portrait)
+                ]);
+        }),
       );
-    });
-  }
 }
