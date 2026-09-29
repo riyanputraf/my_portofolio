@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get.dart';
 import 'package:my_portofolio/configs/themes/app_theme.dart';
-import 'package:my_portofolio/features/home/controllers/home_controller.dart';
+import 'package:my_portofolio/features/home/bindings/home_binding.dart';
 import 'package:my_portofolio/features/home/views/ui/home_view.dart';
 import 'package:my_portofolio/features/home/views/components/projects_section.dart';
 import 'package:my_portofolio/features/home/views/components/portfolio_primitives.dart';
@@ -10,7 +10,7 @@ import 'package:my_portofolio/features/home/views/components/certification_secti
 import 'package:my_portofolio/features/home/views/components/certification_section_component/certification_section.dart';
 
 void main() {
-  tearDown(() => Get.reset());
+  tearDown(Get.reset);
 
   Future<void> mount(WidgetTester tester, Widget child, Size size,
       {double scale = 1}) async {
@@ -18,7 +18,7 @@ void main() {
     tester.view.devicePixelRatio = 1;
     addTearDown(tester.view.resetPhysicalSize);
     addTearDown(tester.view.resetDevicePixelRatio);
-    Get.put(HomeController());
+    HomeBinding().dependencies();
     await tester.pumpWidget(MaterialApp(
         theme: AppTheme.light,
         builder: (context, child) => MediaQuery(
@@ -109,7 +109,7 @@ void main() {
     tester.view.devicePixelRatio = 1;
     addTearDown(tester.view.resetPhysicalSize);
     addTearDown(tester.view.resetDevicePixelRatio);
-    Get.put(HomeController());
+    HomeBinding().dependencies();
     await tester
         .pumpWidget(MaterialApp(theme: AppTheme.light, home: const HomePage()));
     await tester.pumpAndSettle();

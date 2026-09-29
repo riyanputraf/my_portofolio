@@ -22,8 +22,10 @@ The repository's `.fvmrc` selects the Flutter SDK. Use `flutter` directly if you
 ## Content and styling
 
 - `lib/configs/themes/app_theme.dart`: colors, typography, and button styles.
-- `lib/features/home/models/project_model.dart`: seven projects and their categories.
-- `lib/features/home/controllers/home_controller.dart`: experience, education, skills, and certificates.
+- `lib/features/home/data/portfolio_data.dart`: profile, projects, experience, education, skills, and certificates.
+- `lib/features/home/models/`: immutable content structures and project categories.
+- `lib/features/home/controllers/`: GetX state for navigation, project filtering, and certificate visibility.
+- `lib/features/home/bindings/home_binding.dart`: dependency registration for the home feature.
 - `lib/features/home/views/components/contact_section.dart`: email and social links.
 - `assets/projects/`: compressed artwork cropped from the supplied `Portofolio PDF.pdf`.
 - `assets/fonts/`: bundled Roboto fonts and their license; typography does not require a Google Fonts request.

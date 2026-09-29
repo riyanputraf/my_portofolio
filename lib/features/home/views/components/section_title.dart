@@ -11,14 +11,11 @@ class SectionTitle extends StatelessWidget {
         children: [
           Text(eyebrow.toUpperCase(),
               style: const TextStyle(
-                  color: AppTheme.primary,
-                  fontSize: 11,
-                  letterSpacing: 2.2,
-                  fontWeight: FontWeight.w700)),
+                  color: AppTheme.primary, fontSize: 11, letterSpacing: 2.2, fontWeight: FontWeight.w700)),
           const SizedBox(height: 14),
           Text(title,
               style: TextStyle(
-                  fontSize: MediaQuery.sizeOf(context).width < 700 ? 32 : 42,
+                  fontSize: MediaQuery.sizeOf(context).width < AppTheme.mobileBreakpoint ? 32 : 42,
                   letterSpacing: -1.5,
                   height: 1.15,
                   fontWeight: FontWeight.w700)),

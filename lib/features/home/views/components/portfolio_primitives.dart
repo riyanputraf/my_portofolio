@@ -16,9 +16,7 @@ class SectionShell extends StatelessWidget {
               width: double.infinity,
               child: Padding(
                 padding: EdgeInsets.symmetric(
-                    horizontal:
-                        MediaQuery.sizeOf(context).width < 700 ? 24 : 48,
-                    vertical: 64),
+                    horizontal: MediaQuery.sizeOf(context).width < AppTheme.mobileBreakpoint ? 24 : 48, vertical: 64),
                 child: child,
               )),
         )),
@@ -33,32 +31,25 @@ class Tag extends StatelessWidget {
   Widget build(BuildContext context) => Container(
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
         decoration: BoxDecoration(
-            color: dark ? const Color(0xFF303240) : const Color(0xFFF0EDF9),
-            borderRadius: BorderRadius.circular(8)),
+            color: dark ? AppTheme.darkTagBackground : AppTheme.tagBackground, borderRadius: BorderRadius.circular(8)),
         child: Text(text,
-            style: TextStyle(
-                fontSize: 12,
-                fontWeight: FontWeight.w600,
-                color: dark ? Colors.white : AppTheme.primary)),
+            style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600, color: dark ? Colors.white : AppTheme.primary)),
       );
 }
 
 /// Reveal once when the content reaches the reading area.
 class ScrollReveal extends StatefulWidget {
-  const ScrollReveal(
-      {super.key, required this.controller, required this.child});
+  const ScrollReveal({super.key, required this.controller, required this.child});
   final ScrollController controller;
   final Widget child;
   @override
   State<ScrollReveal> createState() => _ScrollRevealState();
 }
 
-class _ScrollRevealState extends State<ScrollReveal>
-    with SingleTickerProviderStateMixin {
-  late final AnimationController _animation = AnimationController(
-      vsync: this, duration: const Duration(milliseconds: 800));
-  late final CurvedAnimation _opacity =
-      CurvedAnimation(parent: _animation, curve: Curves.easeInOutCubic);
+class _ScrollRevealState extends State<ScrollReveal> with SingleTickerProviderStateMixin {
+  late final AnimationController _animation =
+      AnimationController(vsync: this, duration: const Duration(milliseconds: 800));
+  late final CurvedAnimation _opacity = CurvedAnimation(parent: _animation, curve: Curves.easeInOutCubic);
   bool _revealed = false;
   bool _reducedMotion = false;
   final _anchor = GlobalKey();

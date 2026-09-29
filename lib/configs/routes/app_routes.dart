@@ -1,3 +1,3 @@
-abstract class Routes {
+abstract final class Routes {
   static const home = '/';
 }
