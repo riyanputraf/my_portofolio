@@ -67,13 +67,27 @@ class ContactSection extends StatelessWidget {
             children: [
               Text('© ${DateTime.now().year} Riyan Putra Firjatullah',
                   style: const TextStyle(color: AppTheme.darkMuted, fontSize: 12)),
-              TextButton(
-                  onPressed: () => openPortfolioLink(context, Uri.parse('https://github.com/riyanputraf')),
-                  child: const Text('GitHub', style: TextStyle(color: Colors.white))),
-              TextButton(
-                  onPressed: () =>
-                      openPortfolioLink(context, Uri.parse('https://www.instagram.com/riyanputrafirjatullah/')),
-                  child: const Text('Instagram', style: TextStyle(color: Colors.white))),
+              Wrap(spacing: 12, runSpacing: 12, children: [
+                OutlinedButton.icon(
+                    style: OutlinedButton.styleFrom(
+                        foregroundColor: Colors.white,
+                        minimumSize: const Size(48, 48),
+                        side: const BorderSide(color: AppTheme.darkBorder)),
+                    onPressed: () => openPortfolioLink(context, Uri.parse('https://github.com/riyanputraf')),
+                    icon: Image.asset('assets/icons/github.png',
+                        width: 22, height: 22, excludeFromSemantics: true),
+                    label: const Text('GitHub')),
+                OutlinedButton.icon(
+                    style: OutlinedButton.styleFrom(
+                        foregroundColor: Colors.white,
+                        minimumSize: const Size(48, 48),
+                        side: const BorderSide(color: AppTheme.darkBorder)),
+                    onPressed: () =>
+                        openPortfolioLink(context, Uri.parse('https://www.linkedin.com/in/riyanputrafirjatullah/')),
+                    icon: Image.asset('assets/icons/linkedin.png',
+                        width: 22, height: 22, excludeFromSemantics: true),
+                    label: const Text('LinkedIn')),
+              ]),
               TextButton.icon(
                   onPressed: onBackToTop,
                   icon: const Icon(Icons.arrow_upward, size: 16, color: Colors.white),

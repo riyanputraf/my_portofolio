@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_portofolio/configs/themes/app_theme.dart';
-import 'package:my_portofolio/features/home/data/portfolio_data.dart';
+import 'package:my_portofolio/features/home/data/profile_data.dart';
 import 'package:my_portofolio/features/home/views/components/portfolio_primitives.dart';
 
 class HeroSection extends StatelessWidget {
@@ -12,13 +12,13 @@ class HeroSection extends StatelessWidget {
         child: LayoutBuilder(builder: (context, box) {
           final mobile = box.maxWidth < 740;
           final copy = Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            const Tag(PortfolioData.role),
+            const Tag(ProfileData.role),
             const SizedBox(height: 26),
             Text('Thoughtful apps.\nMeaningful\nexperiences.',
                 style: TextStyle(
                     fontSize: mobile ? 46 : 66, height: 1.04, letterSpacing: -2.8, fontWeight: FontWeight.w700)),
             const SizedBox(height: 26),
-            const Text("Hi, I’m ${PortfolioData.name}.", style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600)),
+            const Text("Hi, I’m ${ProfileData.name}.", style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600)),
             const SizedBox(height: 8),
             ConstrainedBox(
                 constraints: const BoxConstraints(maxWidth: 430),
@@ -49,27 +49,44 @@ class HeroSection extends StatelessWidget {
                           BoxDecoration(color: const Color(0xFFE9E3F4), borderRadius: BorderRadius.circular(180)),
                       child: ClipRRect(
                           borderRadius: BorderRadius.circular(180),
-                          child: Image.asset('assets/images/foto1.jpg',
+                          child: Image.asset('assets/images/riyan-portrait.jpg',
                               fit: BoxFit.cover,
-                              alignment: const Alignment(0, -.6),
+                              alignment: Alignment.center,
                               semanticLabel: 'Portrait of Riyan Putra Firjatullah')),
                     )),
                 Positioned(
                     bottom: 28,
                     left: 0,
-                    child: Container(
-                        padding: const EdgeInsets.all(18),
-                        decoration: BoxDecoration(color: AppTheme.blackBar, borderRadius: BorderRadius.circular(16)),
-                        child: const Row(mainAxisSize: MainAxisSize.min, children: [
-                          FlutterLogo(size: 30),
-                          SizedBox(width: 14),
-                          Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                    right: 24,
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+                        decoration: BoxDecoration(
+                          color: AppTheme.blackBar,
+                          borderRadius: BorderRadius.circular(16),
+                          border: Border.all(color: const Color(0xFF49405D)),
+                          boxShadow: const [BoxShadow(color: Color(0x26000000), blurRadius: 24, offset: Offset(0, 8))],
+                        ),
+                        child: Row(mainAxisSize: MainAxisSize.min, children: [
+                          Container(
+                            width: 36,
+                            height: 36,
+                            decoration: BoxDecoration(
+                              color: const Color(0xFFDDD2FF),
+                              borderRadius: BorderRadius.circular(11),
+                            ),
+                            child: const Icon(Icons.code_rounded, color: AppTheme.blackBar, size: 22),
+                          ),
+                          const SizedBox(width: 10),
+                          const Flexible(child: Column(mainAxisSize: MainAxisSize.min, crossAxisAlignment: CrossAxisAlignment.start, children: [
                             Text('From idea to app',
                                 style: TextStyle(color: Colors.white, fontWeight: FontWeight.w700)),
-                            Text('Mobile · API · User experience',
-                                style: TextStyle(color: Color(0xFFCAC5DB), fontSize: 11))
-                          ])
-                        ]))),
+                            SizedBox(height: 2),
+                            Text('Built with care.',
+                                style: TextStyle(color: Color(0xFFCAC5DB), fontSize: 11, height: 1.5))
+                          ]))
+                        ])))),
               ]));
           return mobile
               ? Column(

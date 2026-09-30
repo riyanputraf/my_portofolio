@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_portofolio/configs/themes/app_theme.dart';
-import 'package:my_portofolio/features/home/data/portfolio_data.dart';
+import 'package:my_portofolio/features/home/data/skills_data.dart';
 import 'package:my_portofolio/features/home/views/components/portfolio_primitives.dart';
 import 'package:my_portofolio/features/home/views/components/section_title.dart';
 
@@ -63,7 +63,7 @@ class ServicesSection extends StatelessWidget {
         Wrap(
             spacing: 12,
             runSpacing: 12,
-            children: PortfolioData.serviceSkills
+            children: SkillsData.serviceSkills
                 .map((s) => Container(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 16, vertical: 12),

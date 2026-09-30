@@ -29,7 +29,7 @@ class ProjectsSection extends GetView<ProjectsController> {
               category: null,
               selected: selectedCategory == null,
             ),
-            ...ProjectCategory.values.map(
+            ...controller.categories.map(
               (category) => _filterChip(
                 label: category.label,
                 category: category,

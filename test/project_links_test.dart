@@ -16,7 +16,7 @@ void main() {
                   project: ProjectModel(
                 name: 'Example',
                 category: ProjectCategory.commerce,
-                imageAsset: 'assets/projects/shoeva.jpg',
+                imageAsset: 'assets/projects/shoeva-app.jpg',
                 summary: 'Example project',
                 stack: const ['Flutter'],
                 googlePlayUrl: play,

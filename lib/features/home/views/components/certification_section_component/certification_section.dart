@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_portofolio/features/home/controllers/certifications_controller.dart';
-import 'package:my_portofolio/features/home/data/portfolio_data.dart';
+import 'package:my_portofolio/features/home/data/certificates_data.dart';
 import 'package:my_portofolio/features/home/views/components/certification_section_component/certificate_card.dart';
 import 'package:my_portofolio/features/home/views/components/portfolio_primitives.dart';
 import 'package:my_portofolio/features/home/views/components/section_title.dart';
@@ -21,7 +21,7 @@ class CertificationsSection extends GetView<CertificationsController> {
                   ? 2
                   : 1;
           final width = (box.maxWidth - 20 * (columns - 1)) / columns;
-          final data = PortfolioData.certificates;
+          final data = CertificatesData.certificates;
           // Measure all titles, including collapsed cards, so expanding the
           // collection cannot change the height of the featured cards.
           double titleHeight = 0;

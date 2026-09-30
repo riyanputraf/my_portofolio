@@ -69,11 +69,15 @@ void main() {
         tester,
         const Scaffold(body: SingleChildScrollView(child: ProjectsSection())),
         const Size(1440, 1000));
-    await tester.tap(find.widgetWithText(ChoiceChip, 'IoT'));
+    expect(find.text('Monitoring Kandang'), findsNothing);
+    expect(find.text('JavaCode'), findsNothing);
+    expect(find.widgetWithText(ChoiceChip, 'IoT'), findsNothing);
+    expect(find.text('Explore project'), findsNWidgets(5));
+    await tester.tap(find.widgetWithText(ChoiceChip, 'Community'));
     await tester.pumpAndSettle();
-    expect(find.text('Masjid Dana'), findsNothing);
-    expect(find.text('Monitoring Kandang'), findsOneWidget);
-    await tester.tap(find.text('Monitoring Kandang'));
+    expect(find.text('LappyHub'), findsNothing);
+    expect(find.text('Masjid Dana'), findsOneWidget);
+    await tester.tap(find.text('Masjid Dana'));
     await tester.pumpAndSettle();
     expect(find.byType(Dialog), findsOneWidget);
     await tester.tap(find.byTooltip('Close project'));
@@ -140,12 +144,17 @@ void main() {
       final header = find.text('Ideas turned into experiences.');
       final subtitle =
           find.text('A collection of mobile products for everyday needs.');
-      final chip = find.widgetWithText(ChoiceChip, 'IoT');
+      final chip = find.widgetWithText(ChoiceChip, 'Community');
       final headerRect = tester.getRect(header);
       final subtitleRect = tester.getRect(subtitle);
       final chipRect = tester.getRect(chip);
       final imageWidth = tester.getSize(find.byType(Image).first).width;
-      for (final category in ['IoT', 'Community', 'Commerce', 'All projects']) {
+      for (final category in [
+        'Community',
+        'Productivity',
+        'Commerce',
+        'All projects'
+      ]) {
         await tester.tap(find.widgetWithText(ChoiceChip, category));
         await tester.pumpAndSettle();
         expect(tester.getRect(header), headerRect);

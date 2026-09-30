@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_portofolio/configs/themes/app_theme.dart';
-import 'package:my_portofolio/features/home/data/portfolio_data.dart';
+import 'package:my_portofolio/features/home/data/skills_data.dart';
 
 class SkillsStrip extends StatelessWidget {
   const SkillsStrip({super.key});
@@ -16,7 +16,7 @@ class SkillsStrip extends StatelessWidget {
           spacing: 28,
           runSpacing: 14,
           alignment: WrapAlignment.center,
-          children: PortfolioData.skills.map((s) {
+          children: SkillsData.skills.map((s) {
             return Row(
               mainAxisSize: MainAxisSize.min,
               spacing: 8,
