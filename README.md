@@ -30,6 +30,6 @@ The repository's `.fvmrc` selects the Flutter SDK. Use `flutter` directly if you
 - `assets/projects/`: compressed artwork cropped from the supplied `Portofolio PDF.pdf`.
 - `assets/fonts/`: bundled Roboto fonts and their license; typography does not require a Google Fonts request.
 
-Project cards open local details because no individual project repository or live-demo URLs were supplied. Certificates open local previews; only the supplied non-placeholder verification URL is exposed. Add confirmed verification URLs through `linkUrl` to enable additional verification buttons.
+Project cards open local details. Add optional `googlePlayUrl` and `githubUrl` HTTPS addresses to a `ProjectModel` in `portfolio_data.dart` to display the corresponding buttons on both the card and detail dialog. Leave unavailable destinations null; no placeholder links are displayed. Certificates open local previews, with verification buttons for entries that have a `linkUrl`.
 
 Scroll reveals, project hover effects, and section navigation respect the system's reduced-motion preference. Navigation and dialogs use standard keyboard-accessible Material controls. Widget tests cover mobile/tablet/desktop layouts, increased text size, navigation, project filtering, and certificate previews.

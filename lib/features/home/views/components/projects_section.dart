@@ -5,6 +5,7 @@ import 'package:my_portofolio/features/home/controllers/projects_controller.dart
 import 'package:my_portofolio/features/home/models/project_model.dart';
 import 'package:my_portofolio/features/home/views/components/portfolio_primitives.dart';
 import 'package:my_portofolio/features/home/views/components/section_title.dart';
+import 'package:my_portofolio/features/home/views/components/project_links.dart';
 
 class ProjectsSection extends GetView<ProjectsController> {
   const ProjectsSection({super.key});
@@ -131,6 +132,7 @@ class _ProjectCardState extends State<_ProjectCard> {
                       const SizedBox(height: 18),
                       const Text('Explore project',
                           style: TextStyle(color: AppTheme.primary, fontWeight: FontWeight.w600, fontSize: 13)),
+                      ProjectLinks(project: p),
                     ])),
               ])),
         ),
@@ -166,7 +168,8 @@ void _showProject(BuildContext context, ProjectModel p) => showDialog<void>(
                       const SizedBox(height: 16),
                       Text(p.summary, style: const TextStyle(fontSize: 16, height: 1.8)),
                       const SizedBox(height: 20),
-                      Wrap(spacing: 8, runSpacing: 8, children: p.stack.map((s) => Tag(s)).toList())
+                      Wrap(spacing: 8, runSpacing: 8, children: p.stack.map((s) => Tag(s)).toList()),
+                      ProjectLinks(project: p),
                     ])),
               ]))),
         ));

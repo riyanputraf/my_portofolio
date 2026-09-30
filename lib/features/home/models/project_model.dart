@@ -14,10 +14,16 @@ class ProjectModel {
       required this.category,
       required this.imageAsset,
       required this.summary,
-      required this.stack});
+      required this.stack,
+      this.googlePlayUrl,
+      this.githubUrl});
   final String name;
   final ProjectCategory category;
   final String imageAsset;
   final String summary;
   final List<String> stack;
+
+  /// Optional public destinations; leave null for unpublished projects.
+  final String? googlePlayUrl;
+  final String? githubUrl;
 }

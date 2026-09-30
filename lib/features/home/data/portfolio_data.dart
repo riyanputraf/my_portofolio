@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:my_portofolio/features/home/models/certificate_model.dart';
 import 'package:my_portofolio/features/home/models/education_model.dart';
 import 'package:my_portofolio/features/home/models/experience_model.dart';
@@ -6,13 +7,13 @@ import 'package:my_portofolio/features/home/models/service_skill_model.dart';
 
 /// Single source of truth for portfolio content.
 ///
-/// Keep presentation and interaction state inside widgets; edit portfolio
+/// Keep interaction state in GetX controllers and presentation in widgets; edit portfolio
 /// copy, links, and asset references here.
 abstract final class PortfolioData {
   static const name = 'Riyan Putra Firjatullah';
   static const role = 'Flutter Developer';
 
-  static const skills = ['FLUTTER', 'LARAVEL', 'PHP', 'ANDROID', 'GIT'];
+  static const skills = ['FLUTTER', 'FIREBASE', 'iOS', 'ANDROID', 'GIT'];
 
   static const education = [
     EducationModel(
@@ -94,61 +95,64 @@ abstract final class PortfolioData {
       linkUrl: 'https://www.dicoding.com/certificates/JLX1L475NX72',
     ),
     CertificateModel(
-      title: 'Belajar Fundamental Aplikasi Flutter',
-      issuer: 'Dicoding Indonesia',
-      imageAsset: 'assets/certificates/dicoding_flutter_fundamental.jpg',
-    ),
+        title: 'Belajar Fundamental Aplikasi Flutter',
+        issuer: 'Dicoding Indonesia',
+        imageAsset: 'assets/certificates/dicoding_flutter_fundamental.jpg',
+        linkUrl: "https://www.dicoding.com/certificates/72ZD9VWJVPYW"),
     CertificateModel(
-      title: 'Belajar Membuat Aplikasi Flutter untuk Pemula',
-      issuer: 'Dicoding Indonesia',
-      imageAsset: 'assets/certificates/dicoding_flutter_pemula.jpg',
-    ),
+        title: 'Belajar Membuat Aplikasi Flutter untuk Pemula',
+        issuer: 'Dicoding Indonesia',
+        imageAsset: 'assets/certificates/dicoding_flutter_pemula.jpg',
+        linkUrl: "https://www.dicoding.com/certificates/4EXG5RWJEXRL"),
     CertificateModel(
-      title: 'Belajar Membuat Aplikasi Back-End untuk Pemula',
-      issuer: 'Dicoding Indonesia',
-      imageAsset: 'assets/certificates/dicoding_backend.jpg',
-    ),
+        title: 'Belajar Membuat Aplikasi Back-End untuk Pemula',
+        issuer: 'Dicoding Indonesia',
+        imageAsset: 'assets/certificates/dicoding_backend.jpg',
+        linkUrl: "https://www.dicoding.com/certificates/72ZD9VO86PYW"),
     CertificateModel(
-      title: 'Belajar Dasar UX Design',
-      issuer: 'Dicoding Indonesia',
-      imageAsset: 'assets/certificates/dicoding_ux_design.jpg',
-    ),
+        title: 'Belajar Dasar UX Design',
+        issuer: 'Dicoding Indonesia',
+        imageAsset: 'assets/certificates/dicoding_ux_design.jpg',
+        linkUrl: "https://www.dicoding.com/certificates/2VX3YR163PYQ"),
     CertificateModel(
-      title: 'Belajar Prinsip Pemrograman SOLID',
-      issuer: 'Dicoding Indonesia',
-      imageAsset: 'assets/certificates/dicoding_solid_principles.jpg',
-    ),
+        title: 'Belajar Prinsip Pemrograman SOLID',
+        issuer: 'Dicoding Indonesia',
+        imageAsset: 'assets/certificates/dicoding_solid_principles.jpg',
+        linkUrl: "https://www.dicoding.com/certificates/EYX4246QWZDL"),
     CertificateModel(
-      title: 'Belajar Dasar Pemrograman JavaScript',
-      issuer: 'Dicoding Indonesia',
-      imageAsset: 'assets/certificates/dicoding_javascript.jpg',
-    ),
+        title: 'Belajar Dasar Pemrograman JavaScript',
+        issuer: 'Dicoding Indonesia',
+        imageAsset: 'assets/certificates/dicoding_javascript.jpg',
+        linkUrl: "https://www.dicoding.com/certificates/07Z6G8E4MXQR"),
     CertificateModel(
-      title: 'Memulai Pemrograman dengan Dart',
-      issuer: 'Dicoding Indonesia',
-      imageAsset: 'assets/certificates/dicoding_dart_basic.jpg',
-    ),
+        title: 'Memulai Pemrograman dengan Dart',
+        issuer: 'Dicoding Indonesia',
+        imageAsset: 'assets/certificates/dicoding_dart_basic.jpg',
+        linkUrl: "https://www.dicoding.com/certificates/ERZRM8NW2PYV"),
     CertificateModel(
-      title: 'Belajar Dasar Git dengan GitHub',
-      issuer: 'Dicoding Indonesia',
-      imageAsset: 'assets/certificates/dicoding_github.jpg',
-    ),
+        title: 'Belajar Dasar Git dengan GitHub',
+        issuer: 'Dicoding Indonesia',
+        imageAsset: 'assets/certificates/dicoding_github.jpg',
+        linkUrl: "https://www.dicoding.com/certificates/RVZK650LNZD5"),
   ];
 
   static const serviceSkills = [
     ServiceSkillModel(title: 'Flutter', asset: 'assets/skills/flutter.png'),
     ServiceSkillModel(
-      title: 'Mobile Development',
+      title: 'Android',
       asset: 'assets/skills/android.png',
     ),
-    ServiceSkillModel(title: 'Laravel', asset: 'assets/skills/laravel.png'),
-    ServiceSkillModel(title: 'PHP', asset: 'assets/skills/php.png'),
+    ServiceSkillModel(
+        title: 'Firebase',
+        icon: Icons.local_fire_department,
+        iconColor: Color(0xFFEF6C00)),
+    ServiceSkillModel(title: 'iOS', icon: Icons.apple),
     ServiceSkillModel(title: 'API', asset: 'assets/skills/api.png'),
-    ServiceSkillModel(title: 'MySQL', asset: 'assets/skills/mysql.png'),
     ServiceSkillModel(title: 'GIT', asset: 'assets/skills/git.png'),
   ];
 
   // Project copy and artwork are sourced from the supplied portfolio PDF.
+  // Add googlePlayUrl and/or githubUrl to a project to display its link buttons.
   static const projects = [
     ProjectModel(
       name: 'Masjid Dana',
@@ -157,6 +161,7 @@ abstract final class PortfolioData {
       summary:
           'A digital platform that helps mosques manage donations, income, and expenses with greater transparency. A simpler way for communities to support and follow the causes they care about.',
       stack: ['Flutter', 'Firebase'],
+      googlePlayUrl: "https://play.google.com/store/apps/details?id=com.masjid.pro&hl=id"
     ),
     ProjectModel(
       name: 'Mobile I-Lab',
@@ -165,6 +170,7 @@ abstract final class PortfolioData {
       summary:
           'A companion for university practical activities. MiLab helps students, lecturers, and laboratory assistants access information and coordinate their day-to-day academic activities.',
       stack: ['Flutter', 'Firebase', 'Go'],
+      googlePlayUrl: "https://play.google.com/store/apps/details?id=com.infotech.milab&hl=id"
     ),
     ProjectModel(
       name: 'Monitoring Kandang',
@@ -181,6 +187,7 @@ abstract final class PortfolioData {
       summary:
           'A laptop rental application that helps students and other users access the devices they need without buying a new laptop. Browse devices, review rental details, and manage orders.',
       stack: ['Flutter', 'Firebase'],
+      githubUrl: "https://github.com/riyanputraf/lappyhub"
     ),
     ProjectModel(
       name: 'JavaCode',
@@ -197,6 +204,7 @@ abstract final class PortfolioData {
       summary:
           'A shoe shopping application built with Flutter, using Laravel to manage product data and Firebase for messaging. A connected experience from browsing products to checkout.',
       stack: ['Flutter', 'Laravel', 'Firebase', 'Dart'],
+      githubUrl: "https://github.com/riyanputraf/shoeva_app"
     ),
     ProjectModel(
       name: 'Family Plus',
@@ -205,6 +213,7 @@ abstract final class PortfolioData {
       summary:
           'A multiplatform application that helps families organize household tasks and recognize each other’s contributions. Motivation and appreciation are part of the everyday workflow.',
       stack: ['Flutter', 'Firebase', 'Dart'],
+      githubUrl: "https://github.com/Family-Plus/Family-Plus-Frontend"
     ),
   ];
 }

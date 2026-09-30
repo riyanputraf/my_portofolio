@@ -8,11 +8,15 @@ class ServicesSection extends StatelessWidget {
   const ServicesSection({super.key});
   @override
   Widget build(BuildContext context) => SectionShell(
-          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        const SectionTitle(eyebrow: '04 / What I bring', title: 'The tools. The craft. The care.'),
+          child:
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        const SectionTitle(
+            eyebrow: '04 / What I bring',
+            title: 'The tools. The craft. The care.'),
         const SizedBox(height: 30),
         LayoutBuilder(builder: (context, box) {
-          final width = box.maxWidth >= 800 ? (box.maxWidth - 40) / 3 : box.maxWidth;
+          final width =
+              box.maxWidth >= 800 ? (box.maxWidth - 40) / 3 : box.maxWidth;
           const services = [
             (
               Icons.phone_android_rounded,
@@ -38,14 +42,21 @@ class ServicesSection extends StatelessWidget {
                       width: width,
                       padding: const EdgeInsets.all(26),
                       decoration: BoxDecoration(
-                          border: Border.all(color: AppTheme.line), borderRadius: BorderRadius.circular(18)),
-                      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                        Icon(s.$1, color: AppTheme.primary, size: 30),
-                        const SizedBox(height: 22),
-                        Text(s.$2, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w700)),
-                        const SizedBox(height: 12),
-                        Text(s.$3, style: const TextStyle(color: AppTheme.muted, height: 1.8))
-                      ])))
+                          border: Border.all(color: AppTheme.line),
+                          borderRadius: BorderRadius.circular(18)),
+                      child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Icon(s.$1, color: AppTheme.primary, size: 30),
+                            const SizedBox(height: 22),
+                            Text(s.$2,
+                                style: const TextStyle(
+                                    fontSize: 20, fontWeight: FontWeight.w700)),
+                            const SizedBox(height: 12),
+                            Text(s.$3,
+                                style: const TextStyle(
+                                    color: AppTheme.muted, height: 1.8))
+                          ])))
                   .toList());
         }),
         const SizedBox(height: 32),
@@ -54,15 +65,24 @@ class ServicesSection extends StatelessWidget {
             runSpacing: 12,
             children: PortfolioData.serviceSkills
                 .map((s) => Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 16, vertical: 12),
                     decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(10),
                         border: Border.all(color: AppTheme.line)),
                     child: Row(mainAxisSize: MainAxisSize.min, children: [
-                      Image.asset(s.asset, width: 22, height: 22, fit: BoxFit.contain),
+                      if (s.asset != null)
+                        Image.asset(s.asset!,
+                            width: 22, height: 22, fit: BoxFit.contain)
+                      else
+                        Icon(s.icon,
+                            size: 22, color: s.iconColor ?? AppTheme.ink),
                       const SizedBox(width: 10),
-                      Flexible(child: Text(s.title, style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w600)))
+                      Flexible(
+                          child: Text(s.title,
+                              style: const TextStyle(
+                                  fontSize: 12, fontWeight: FontWeight.w600)))
                     ])))
                 .toList()),
       ]));
